@@ -1,0 +1,29 @@
+# Define the required providers and their versions
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.0"
+    }
+  }
+}
+
+# Configure the Google Cloud provider with your Project ID
+provider "google" {
+  # IMPORTANT: Replace "YOUR_PROJECT_ID" with your actual GCP Project ID
+  project     = "cts01-reeni"
+  region      = "us-central1"
+  zone        = "us-central1-a"
+  credentials = "key-tf.json"
+}
+
+
+terraform {
+
+  backend "gcs" {
+
+    bucket = "state-file-remotestorage-tf"
+    prefix = "./"
+  }
+}
+

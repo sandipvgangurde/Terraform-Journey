@@ -1,0 +1,18 @@
+resource "google_compute_attached_disk" "a-disk" {
+
+  disk     = google_compute_disk.disk-1.id
+  instance = google_compute_instance.vm-tf.id
+
+}
+
+
+
+
+resource "google_compute_disk" "disk-1" {
+
+  name = "new-disk-tf"
+  size = 10
+  type = "pd-ssd"
+  zone = "asia-southeast1-a"
+
+}

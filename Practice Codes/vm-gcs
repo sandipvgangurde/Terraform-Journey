@@ -1,0 +1,48 @@
+resource "google_compute_instance" "vm-tf" {
+  name         = "vm-td-gc-state"
+  machine_type = "e2-standard-2"
+  zone         = "asia-south1-a"
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-minimal-2510-questing-amd64-v20251007"
+
+    }
+
+  }
+
+  network_interface {
+    network = "default"
+    access_config {}
+
+  }
+
+  tags = ["production"]
+
+  labels = {
+
+    "key" = "value2"
+
+  }
+
+}
+
+
+resource "google_storage_bucket" "state-file-bucket" {
+  name     = "state-file-remotestorage-tf"
+  location = "ASIA-SOUTH1"
+
+  lifecycle_rule {
+    action {
+
+      type = "Delete"
+    }
+    condition {
+      age = 30
+    }
+  }
+versioning {
+enabled = true
+}
+
+}
+

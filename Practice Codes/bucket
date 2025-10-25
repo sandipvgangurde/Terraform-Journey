@@ -1,0 +1,47 @@
+
+
+resource "google_storage_bucket" "GCS1" {
+  name     = "bucket-for-usr-pass-tf"
+  location = "US-EAST1"
+
+
+  storage_class = "NEARLINE"
+
+  labels = {
+
+    "test" = "bucket"
+    "envi" = "production"
+  }
+
+  lifecycle_rule {
+
+    condition {
+      age = 5
+    }
+
+    action {
+      type         = "SetStorageClass"
+      storage_class = "COLDLINE"
+
+    }
+  }
+
+
+retention_policy {
+is_locked = true
+retention_period = 86400
+
+
+}
+
+
+}
+
+
+resource "google_storage_bucket_object" "filee" {
+  name   = "new-name"
+  source = "./key-tf.json"
+  bucket = google_storage_bucket.GCS1.name
+
+}
+
