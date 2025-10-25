@@ -1,5 +1,5 @@
 resource "google_compute_network" "new-custom-network" {
-  name                   = "custom-vpc-tf"
+  name                    = "custom-vpc-tf"
   auto_create_subnetworks = false
 
 
@@ -40,12 +40,12 @@ resource "google_compute_instance" "vm-depends-on" {
   name         = "vm-depend-on-tf"
   machine_type = "e2-standard-2"
 
-  zone         = "asia-south1-a"
+  zone = "asia-south1-a"
 
   boot_disk {
     initialize_params {
       image = "ubuntu-minimal-2510-questing-amd64-v20251007"
-      size   = 20
+      size  = 20
 
     }
 
@@ -62,10 +62,9 @@ resource "google_compute_instance" "vm-depends-on" {
   labels = {
 
     "k" = "v"
-}
-    depends_on = [
-      google_compute_firewall.allow-ssh,
-      google_compute_subnetwork.custom_subnet
-    ]
   }
-
+  depends_on = [
+    google_compute_firewall.allow-ssh,
+    google_compute_subnetwork.custom_subnet
+  ]
+}
