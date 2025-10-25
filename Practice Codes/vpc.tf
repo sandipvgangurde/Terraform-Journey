@@ -1,17 +1,15 @@
 
-# Define VPC network with automatic subnet creation
+
 resource "google_compute_network" "auto_create" {
   name                    = "auto-create-vpc-tf"
   auto_create_subnetworks  = true
 }
 
-# Define custom VPC network without automatic subnet creation
 resource "google_compute_network" "custom_creation" {
   name                    = "custom-create-vpc-tf"
   auto_create_subnetworks  = false
 }
 
-# Define a custom subnet under the custom VPC network
 resource "google_compute_subnetwork" "sub_sg" {
   name                     = "custom-subnet"
   network                  = google_compute_network.custom_creation.id
