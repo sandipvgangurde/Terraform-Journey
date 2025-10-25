@@ -5,9 +5,6 @@ resource "google_compute_attached_disk" "a-disk" {
 
 }
 
-
-
-
 resource "google_compute_disk" "disk-1" {
 
   name = "new-disk-tf"
