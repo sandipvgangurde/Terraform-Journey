@@ -1,5 +1,5 @@
 provider "google" {
-  project = "cts01-reeni"
+  project = "your-project-id"
   region  = "asia-south1"
 }
 
