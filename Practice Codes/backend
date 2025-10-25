@@ -12,10 +12,10 @@ terraform {
 # Configure the Google Cloud provider with your Project ID
 provider "google" {
   # IMPORTANT: Replace "YOUR_PROJECT_ID" with your actual GCP Project ID
-  project     = "cts01-reeni"
+  project     = "YOUR_PROJECT_ID"
   region      = "us-central1"
   zone        = "us-central1-a"
-  credentials = "key-tf.json"
+  credentials = "file name"
 }
 
 
